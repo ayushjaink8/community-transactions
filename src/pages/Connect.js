@@ -8,7 +8,7 @@ import wiFiFill from '@iconify/icons-eva/wifi-fill';
 // components
 import Page from '../components/Page';
 
-import DisplayScreen from '../components/_connect/displayScreen';
+import DisplayScreen from 'src/components/_connect/displayScreen';
 
 import { ChatEngine } from 'react-chat-engine';
 

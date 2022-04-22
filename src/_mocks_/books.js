@@ -54,3 +54,13 @@ export const books = {
   Horror: [],
   Adventure: [],
 };
+
+
+export const tempBook = {
+  name: "The Amazing Spiderman By Nick Spencer Vol. 1: Back To Basics (MARVEL ORIGINAL COMIC)",
+  price: 1.99,
+  rating: 4,
+  image: Spidey1,
+  about:
+    "An alien invasion attacks New York City and the only one who can stop it is...Spider-Man?! But that's far from all you'll find here - a revelation from the past puts Peter Parker's job, relationships and whole life in jeopardy! And if even that's not enough, you'll see a new roommate, new love interests and a new villain!",
+}

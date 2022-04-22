@@ -35,6 +35,7 @@ import {
   
   import { useHistory } from "react-router-dom"
   import CommunityCard from "../Community/CommunityCard"
+  import { communities } from 'src/_mocks_/communities';
   import { useState } from 'react';
   import { useMoralis, useNewMoralisObject } from 'react-moralis';
   // --------------------------------------------
