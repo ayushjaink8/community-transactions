@@ -10,19 +10,9 @@ import {
 
 // material
 import {
-  Card,
-  Table,
-  Stack,
-  Avatar,
   Button,
-  Checkbox,
-  TableRow,
-  TableBody,
-  TableCell,
   Container,
   Typography,
-  TableContainer,
-  TablePagination,
   TextField,
   Grid,
   Box
@@ -46,28 +36,27 @@ export default function Orders() {
     getItems();
   }, []);
 
-  const { fetch } = useMoralisQuery("Items", (query) => query.limit(100), [], {
+  const { fetch } = useMoralisQuery("Items", (query) => {
+    if(CommunityName) query.equalTo("Community", CommunityName.communityName);
+    return query.limit(100);
+  }, [], {
     autoFetch: false,
   });
 
   const getItems = async (e) => {
     const result = await fetch();
     let data = [];
-
-    result.forEach((e) => {    
-      console.log("hi");
-      console.log(ItemList1);
-      data.push({
-        Community: e.attributes.Community,
-        Admin_id: e.attributes.Admin_Id,
-        itemName: e.attributes.itemName,
-        Quantity: e.attributes.Quantity,
+    if(result){
+      result.forEach((e) => {    
+        data.push({
+          Community: e.attributes.Community,
+          Admin_id: e.attributes.Admin_Id,
+          itemName: e.attributes.itemName,
+          Quantity: e.attributes.Quantity,
+        });
       });
-    });
-
+    }
     setItemList1(data);
-    console.log('ayush');
-    console.log(data);
   };
 
   const addItem = async (e) => {
@@ -93,9 +82,8 @@ export default function Orders() {
       },
     });
 
+    setItemName("");
     await getItems();
-    console.log("hi");
-    console.log(ItemList1);
   };
 
   return (

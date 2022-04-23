@@ -33,21 +33,21 @@ const sidebarConfig = [
     path: '/dashboard/explore',
     icon: getIcon(fileTextFill)
   },
-  {
-    title: 'home',
-    path: '/dashboard/home',
-    icon: getIcon(lockFill)
-  },
-  {
-    title: 'product',
-    path: '/dashboard/product',
-    icon: getIcon(personAddFill)
-  },
-  {
-    title: 'categories',
-    path: '/dashboard/categories',
-    icon: getIcon(alertTriangleFill)
-  }
+  // {
+  //   title: 'home',
+  //   path: '/dashboard/home',
+  //   icon: getIcon(lockFill)
+  // },
+  // {
+  //   title: 'product',
+  //   path: '/dashboard/product',
+  //   icon: getIcon(personAddFill)
+  // },
+  // {
+  //   title: 'categories',
+  //   path: '/dashboard/categories',
+  //   icon: getIcon(alertTriangleFill)
+  // }
 ];
 
 export default sidebarConfig;
