@@ -61,14 +61,15 @@ export default function DashboardApp() {
 
     console.log(result);
     let data = [];
-
-    result.forEach((e)=> {
-      data.push({
-        'Community': e.attributes.Community,
-        'Admin_id': e.attributes.Admin_Id,
-        'Community_id': e.id
+    if(result){
+      result.forEach((e)=> {
+        data.push({
+          'Community': e.attributes.Community,
+          'Admin_id': e.attributes.Admin_Id,
+          'Community_id': e.id
+        })
       })
-    })
+    }
     
     setCommunities(data);    
   }

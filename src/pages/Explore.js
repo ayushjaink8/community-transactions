@@ -9,8 +9,6 @@ import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../components/_das
 import { useState } from 'react';
 import { useMoralis, useNewMoralisObject , useMoralisQuery} from 'react-moralis';
 
-import Popup from '../components/_orders/popup';
-
 
 
 // ----------------------------------------------------------------------
@@ -88,21 +86,10 @@ export default function Explore() {
 
     const updateQ = async (e) => {
 
-      // const order = await Moralis.Object.extend();
-
       const query = new Moralis.Query('Items');
 
-      // console.log(query.limit(100));
       query.equalTo("itemName", 'item2')
-      const result = await query.find();
-
-
-
-      
-
-      console.log(result);
-
-    
+      const result = await query.find();    
 
     }
 
@@ -149,8 +136,6 @@ export default function Explore() {
         <Box m={2}>
           Output: {Value}
         </Box>
-
-        {/* <Popup/> */}
 
         <Box m={2} mt={5}>
           <Button onClick={updateQ}>update q</Button>
