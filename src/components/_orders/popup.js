@@ -38,12 +38,13 @@ import {
   import { communities } from 'src/_mocks_/communities';
   import { useState } from 'react';
   import { useMoralis, useNewMoralisObject } from 'react-moralis';
+
   // --------------------------------------------
-  export default function Popup({community="community1", id="123"}){
+  export default function Popup({community="community1", id="123", itemName, getItems}){
+
       const {Moralis} = useMoralis();
 
-      const [Name,setName]=useState('');
-      const [Quantity,setQuantity]=useState('');
+      const [Quantity, setQuantity]=useState("");
       const [open, setOpen] = useState(false);
 
       const handleClickOpen = () => {
@@ -62,8 +63,8 @@ import {
         const data = {
             Community: community,
             Id: id,
-            Name: Name,
-            Quantity:Quantity
+            ItemName: itemName,
+            Quantity: Quantity
         };
         
         save(data, {
@@ -80,13 +81,24 @@ import {
           },
         });
         console.log("done");
+
+        const query = new Moralis.Query('Items');
+
+        query.equalTo("itemName", itemName)
+
+        const val = await query.first();
+        await val.set("Quantity", (parseInt(val.attributes.Quantity) + parseInt(Quantity)));
+        await val.save()
+
+        getItems();
+
         handleClose();
       }
       
       return(<>
 
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        ADD
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Orders</DialogTitle>
@@ -94,17 +106,14 @@ import {
           <Box justifyContent="center" m={1}>
             <Stack direction="column" alignItems="center" justifyContent="space-between" mb={5}>
               <Box m={1}>
-                <TextField 
-                  value={Quantity}
-                  onChange={(e)=>setQuantity(e.target.value)}
-                  placeholder='Name'
-                  required
-                />
+                <Typography  variant="subtitle2" sx={{ opacity: 0.72 }}>
+                  Item Name: {itemName}
+                </Typography>
               </Box>
               <Box m={1}>
                 <TextField 
-                  value={Name}
-                  onChange={(e)=>setName(e.target.value)}
+                  value={Quantity}
+                  onChange={(e)=>setQuantity(e.target.value)}
                   placeholder='Quantity'
                   required
                 />
@@ -117,7 +126,6 @@ import {
           <Button onClick={updateObject}>Add</Button>
         </DialogActions>
       </Dialog>
-        
       
       </>
       )

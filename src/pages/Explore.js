@@ -77,11 +77,33 @@ export default function Explore() {
   
     const killFunc = async (e) => {
       const result = await fetch();
-
       console.log(result);
+    }
+
+    // const {fetch} = useMoralisQuery(
+    //   "OrderDetails", (query) => {
+    //     query.equalTo
+    //   }
+    // )
+
+    const updateQ = async (e) => {
+
+      // const order = await Moralis.Object.extend();
+
+      const query = new Moralis.Query('Items');
+
+      // console.log(query.limit(100));
+      query.equalTo("itemName", 'item2')
+      const result = await query.find();
+
 
 
       
+
+      console.log(result);
+
+    
+
     }
 
   return (
@@ -128,7 +150,11 @@ export default function Explore() {
           Output: {Value}
         </Box>
 
-        <Popup/>
+        {/* <Popup/> */}
+
+        <Box m={2} mt={5}>
+          <Button onClick={updateQ}>update q</Button>
+        </Box>
 
 
       </Container>
